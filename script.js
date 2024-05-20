@@ -1,6 +1,7 @@
 const nextButton = document.querySelector("#next-button");
 const prevButton = document.querySelector("#prev-button");
-const galleryContainer = document.querySelector(".gallery-container");
+
+let imageIndex = 0;
 
 const images = [
   "images/01.jpg",
@@ -12,34 +13,27 @@ const images = [
   "images/07.jpg",
 ];
 
-let selectedImage = images[0];
+nextButton.addEventListener("click", () => {
+  renderImage(getNextImage());
+});
 
-function getNextImage(currentImage) {
-  const index = images.indexOf(currentImage);
-  if (index != images.length - 1) return images[index + 1];
-  else return images[0];
+prevButton.addEventListener("click", () => {
+  renderImage(getPreviousImage());
+});
+
+function getNextImage() {
+  if (imageIndex != images.length - 1) imageIndex++;
+  else imageIndex = 0;
+  return images[imageIndex];
 }
 
-function getPreviousImage(currentImage) {
-  const index = images.indexOf(currentImage);
-  if (index != 0) return images[index - 1];
-  else return images[images.length - 1];
+function getPreviousImage() {
+  if (imageIndex != 0) imageIndex--;
+  else imageIndex = images.length - 1;
+  return images[imageIndex];
 }
 
-(function renderImages() {
-  for (const image of images) {
-    galleryContainer.appendChild(createImage(image));
-  }
-})();
-
-function createImage(imageSrc) {
-  const newImageContainer = document.createElement("div");
-  newImageContainer.classList.add("image-container");
-
-  const newImage = document.createElement("img");
-  newImage.src = imageSrc;
-
-  newImageContainer.appendChild(newImage);
-
-  return newImageContainer;
+function renderImage(imageToRender) {
+  const image = document.querySelector("#image");
+  image.src = imageToRender;
 }
