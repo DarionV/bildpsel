@@ -48,6 +48,12 @@ body {
 
   transition-property: all;
   transition-duration: 0.5s;
+
+  filter: brightness(50%);
+}
+
+.image.selected {
+  filter: brightness(100%);
 }
 
 .controls-container {

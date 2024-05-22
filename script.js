@@ -15,14 +15,20 @@ const images = [
   "images/07.jpg",
 ];
 
+const imageElements = document.querySelectorAll(".image");
+
 nextButton.addEventListener("click", () => {
   distanceToMoveInPixels -= IMAGE_WIDTH_IN_PIXELS;
   nextImage(distanceToMoveInPixels);
+  deselectImages();
+  selectImage(getNextImage());
 });
 
 prevButton.addEventListener("click", () => {
   distanceToMoveInPixels += IMAGE_WIDTH_IN_PIXELS;
   previousImage(distanceToMoveInPixels);
+  deselectImages();
+  selectImage(getPreviousImage());
 });
 
 function centerFirstImage() {
@@ -40,7 +46,17 @@ function centerFirstImage() {
   }
 }
 
-centerFirstImage();
+function getNextImage() {
+  const images = document.querySelectorAll(".image");
+  imageIndex++;
+  return images[imageIndex];
+}
+
+function getPreviousImage() {
+  const images = document.querySelectorAll(".image");
+  imageIndex--;
+  return images[imageIndex];
+}
 
 function nextImage(distance) {
   const images = document.querySelectorAll(".image");
@@ -56,23 +72,21 @@ function previousImage(distance) {
   }
 }
 
-function getImages() {
-  const images = document.querySelectorAll("image");
-}
-
-function getNextImage() {
-  if (imageIndex != images.length - 1) imageIndex++;
-  else imageIndex = 0;
-  return images[imageIndex];
-}
-
-function getPreviousImage() {
-  if (imageIndex != 0) imageIndex--;
-  else imageIndex = images.length - 1;
-  return images[imageIndex];
-}
-
 function renderImage(imageToRender) {
   const image = document.querySelector("#image");
   image.src = imageToRender;
 }
+
+function selectImage(image) {
+  image.classList.add("selected");
+}
+
+function deselectImages() {
+  const images = document.querySelectorAll(".image");
+  for (const image of images) {
+    image.classList.remove("selected");
+  }
+}
+
+centerFirstImage();
+selectImage(imageElements[0]);
