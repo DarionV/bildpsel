@@ -10,6 +10,7 @@ const images = [
   "images/04.jpg",
   "images/05.jpg",
   "images/06.jpg",
+  "images/07.jpg",
 ];
 
 (function initializeGallery() {
@@ -29,27 +30,24 @@ const images = [
 function centerFirstImage() {
   // Bildspelet är centrerat med justify-content: center
   // Om bildspelet har tex 7 bilder hamnar bild 4 i mitten.
-  // Vi behöver hoppa 3 steg åt vänster
   for (let i = 1; i < images.length; i += 2) {
     moveLeft();
   }
-  // Om jämnt antal bilder i bildspelet hamnar första bilden halvt åt sidan.
-  // moveHalfStep åtgärdar det.
+  // Om jämnt antal bilder i bildspelet hamnar alla bilder ett halvt steg åt sidan.
+  // moveLeftHalfStep åtgärdar det.
   if (images.length % 2 == 0) {
     moveLeftHalfstep();
   }
 }
 
 function getNextImage() {
-  const images = document.querySelectorAll(".image");
   imageIndex++;
-  return images[imageIndex];
+  return getImages()[imageIndex];
 }
 
 function getPreviousImage() {
-  const images = getImages();
   imageIndex--;
-  return images[imageIndex];
+  return getImages()[imageIndex];
 }
 
 function getImages() {
@@ -72,24 +70,22 @@ function previousImage() {
 
 function moveRight() {
   distanceToMoveInPixels -= IMAGE_WIDTH_IN_PIXELS;
-  const imageElements = getImages();
-  for (const image of imageElements) {
-    image.style.transform = `translateX(${distanceToMoveInPixels}px)`;
-  }
+  moveImages();
 }
 
 function moveLeft() {
   distanceToMoveInPixels += IMAGE_WIDTH_IN_PIXELS;
-  const imageElements = getImages();
-  for (const image of imageElements) {
-    image.style.transform = `translateX(${distanceToMoveInPixels}px)`;
-  }
+  moveImages();
 }
 
 function moveLeftHalfstep() {
   distanceToMoveInPixels -= IMAGE_WIDTH_IN_PIXELS / 2;
-  const imageElements = getImages();
-  for (const image of imageElements) {
+  moveImages();
+}
+
+function moveImages() {
+  const images = getImages();
+  for (const image of images) {
     image.style.transform = `translateX(${distanceToMoveInPixels}px)`;
   }
 }
@@ -99,7 +95,7 @@ function selectImage(image) {
 }
 
 function deselectImages() {
-  const images = document.querySelectorAll(".image");
+  const images = getImages();
   for (const image of images) {
     image.classList.remove("selected");
   }
