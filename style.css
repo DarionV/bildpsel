@@ -7,9 +7,6 @@
 body {
   background-color: #191919;
   height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .gallery-container {
@@ -25,7 +22,7 @@ body {
 }
 
 .image {
-  width: 300px;
+  min-width: 300px;
   object-fit: cover;
 
   transition-property: all;
