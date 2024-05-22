@@ -43,7 +43,7 @@ body {
 }
 
 .image.selected {
-  filter: brightness(100%);
+  filter: brightness(120%);
   translate: 0px -30px;
 }
 
@@ -59,4 +59,5 @@ button {
   margin: 0px 10px;
   height: 100%;
   width: 100px;
+  cursor: pointer;
 }
