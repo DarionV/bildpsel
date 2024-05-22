@@ -11,6 +11,12 @@ const images = [
   "images/05.jpg",
   "images/06.jpg",
   "images/07.jpg",
+  "images/08.jpeg",
+  "images/09.jpeg",
+  "images/10.jpeg",
+  "images/11.jpeg",
+  "images/12.jpeg",
+  "images/13.jpeg",
 ];
 
 (function initializeGallery() {
