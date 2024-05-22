@@ -23,18 +23,13 @@ body {
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
-  /* overflow: hidden; */
   overflow-x: clip;
-  /* border: 1px solid wheat; */
   position: relative;
   -webkit-box-reflect: below 0px;
 }
 
 .image {
-  /* height: 100%; */
-  min-width: 300px;
-
-  /* border: 1px solid red; */
+  width: 300px;
   object-fit: cover;
 
   transition-property: all;
@@ -58,10 +53,25 @@ body {
 
 button {
   margin: 0px 10px;
-  height: 100%;
-  width: 100px;
+  height: 80%;
+  min-width: 150px;
   cursor: pointer;
   z-index: 100;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  padding: 12px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  color: white;
+  transition-property: all;
+  transition-duration: 0.3s;
+}
+
+button:hover {
+  background-color: rgb(127, 181, 62);
 }
 
 .gradient {
@@ -69,6 +79,8 @@ button {
   height: 25%;
   position: absolute;
   top: 75%;
-
-  background: linear-gradient(#19191954, #191919);
+  background: linear-gradient(
+    rgba(25, 25, 25, 0.329) 0 20%,
+    rgb(25, 25, 25) 80% 100%
+  );
 }
