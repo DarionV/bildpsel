@@ -23,12 +23,24 @@ body {
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
+  overflow: hidden;
+  border: 1px solid wheat;
 }
 
-.gallery-container img {
+.gallery {
   height: 100%;
   width: 100%;
-  max-width: 500px;
+  display: flex;
+  transition-property: all;
+  transition-duration: 0.5s;
+  left: 50;
+}
+
+#image {
+  /* height: 100%; */
+  min-width: 300px;
+
+  border: 1px solid red;
   object-fit: cover;
 }
 
@@ -44,4 +56,36 @@ button {
   margin: 0px 10px;
   height: 100%;
   width: 100px;
+}
+
+.next-center {
+  animation: next-center 1.5s 1 forwards;
+}
+.next-right {
+  animation: next-right 1.5s 1 forwards;
+}
+.previous-center {
+  animation: next-center 1.5s 1 forwards;
+}
+.previous-left {
+  animation: next-right 1.5s 1 forwards;
+}
+
+@keyframes next-center {
+  0% {
+    transform: translateX(-400px) scale(80%);
+    filter: brightness(50%);
+  }
+}
+@keyframes next-right {
+  100% {
+    transform: translateX(400px) scale(80%);
+    filter: brightness(50%);
+  }
+}
+
+@keyframes move-right {
+  100% {
+    transform: translateX(600px);
+  }
 }

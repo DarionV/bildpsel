@@ -12,14 +12,29 @@ const images = [
   "images/06.jpg",
   "images/07.jpg",
 ];
+let amount = 0;
 
 nextButton.addEventListener("click", () => {
-  renderImage(getNextImage());
+  // renderImage(getNextImage());
+  amount += 300;
+  moveRight(amount);
 });
 
 prevButton.addEventListener("click", () => {
-  renderImage(getPreviousImage());
+  // renderImage(getPreviousImage());
+  amount -= 300;
+  moveLeft(amount);
 });
+
+function moveRight(amount) {
+  const gallery = document.querySelector(".gallery");
+  gallery.style.transform = `translateX(${amount}px)`;
+}
+
+function moveLeft(amount) {
+  const gallery = document.querySelector(".gallery");
+  gallery.style.transform = `translateX(${amount}px)`;
+}
 
 function getNextImage() {
   if (imageIndex != images.length - 1) imageIndex++;
