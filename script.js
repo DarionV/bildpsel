@@ -1,7 +1,9 @@
 const nextButton = document.querySelector("#next-button");
 const prevButton = document.querySelector("#prev-button");
+const IMAGE_WIDTH_IN_PIXELS = 300;
 
 let imageIndex = 0;
+let distanceToMoveInPixels = IMAGE_WIDTH_IN_PIXELS;
 
 const images = [
   "images/01.jpg",
@@ -12,28 +14,50 @@ const images = [
   "images/06.jpg",
   "images/07.jpg",
 ];
-let amount = 0;
 
 nextButton.addEventListener("click", () => {
-  // renderImage(getNextImage());
-  amount += 300;
-  moveRight(amount);
+  distanceToMoveInPixels -= IMAGE_WIDTH_IN_PIXELS;
+  nextImage(distanceToMoveInPixels);
 });
 
 prevButton.addEventListener("click", () => {
-  // renderImage(getPreviousImage());
-  amount -= 300;
-  moveLeft(amount);
+  distanceToMoveInPixels += IMAGE_WIDTH_IN_PIXELS;
+  previousImage(distanceToMoveInPixels);
 });
 
-function moveRight(amount) {
-  const gallery = document.querySelector(".gallery");
-  gallery.style.transform = `translateX(${amount}px)`;
+function centerFirstImage() {
+  for (let i = 1; i < images.length; i += 2) {
+    previousImage(distanceToMoveInPixels);
+    distanceToMoveInPixels += IMAGE_WIDTH_IN_PIXELS;
+    console.log("test");
+  }
+  distanceToMoveInPixels -= IMAGE_WIDTH_IN_PIXELS;
+
+  if (images.length % 2 == 0) {
+    nextImage(distanceToMoveInPixels - IMAGE_WIDTH_IN_PIXELS / 2);
+    distanceToMoveInPixels -= IMAGE_WIDTH_IN_PIXELS / 2;
+    console.log("te");
+  }
 }
 
-function moveLeft(amount) {
-  const gallery = document.querySelector(".gallery");
-  gallery.style.transform = `translateX(${amount}px)`;
+centerFirstImage();
+
+function nextImage(distance) {
+  const images = document.querySelectorAll(".image");
+  for (const image of images) {
+    image.style.transform = `translateX(${distance}px)`;
+  }
+}
+
+function previousImage(distance) {
+  const images = document.querySelectorAll(".image");
+  for (const image of images) {
+    image.style.transform = `translateX(${distance}px)`;
+  }
+}
+
+function getImages() {
+  const images = document.querySelectorAll("image");
 }
 
 function getNextImage() {
