@@ -69,35 +69,3 @@ button {
   height: 100%;
   width: 100px;
 }
-
-.next-center {
-  animation: next-center 1.5s 1 forwards;
-}
-.next-right {
-  animation: next-right 1.5s 1 forwards;
-}
-.previous-center {
-  animation: next-center 1.5s 1 forwards;
-}
-.previous-left {
-  animation: next-right 1.5s 1 forwards;
-}
-
-@keyframes next-center {
-  0% {
-    transform: translateX(-400px) scale(80%);
-    filter: brightness(50%);
-  }
-}
-@keyframes next-right {
-  100% {
-    transform: translateX(400px) scale(80%);
-    filter: brightness(50%);
-  }
-}
-
-@keyframes move-right {
-  100% {
-    transform: translateX(600px);
-  }
-}
