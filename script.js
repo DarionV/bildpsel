@@ -56,6 +56,13 @@ function selectImage(image) {
   image.classList.add("selected");
 }
 
+function deselectImages() {
+  const images = getImages();
+  for (const image of images) {
+    image.classList.remove("selected");
+  }
+}
+
 function nextImage() {
   if (currentImageIndex === images.length - 1) return;
   moveRight();
@@ -104,13 +111,6 @@ function getPreviousImage() {
 
 function getImages() {
   return document.querySelectorAll(".image");
-}
-
-function deselectImages() {
-  const images = getImages();
-  for (const image of images) {
-    image.classList.remove("selected");
-  }
 }
 
 function createImage(src) {
