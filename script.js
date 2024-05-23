@@ -15,7 +15,6 @@ const images = [
 ];
 
 const IMAGE_WIDTH_IN_PIXELS = 300;
-
 let currentImageIndex = 0;
 
 // Denna variabel är en x-position relativ till varje bilds start-position i x-led.
@@ -31,8 +30,8 @@ let relativeXPosition = 0;
   nextButton.addEventListener("click", nextImage);
   prevButton.addEventListener("click", previousImage);
 
-  for (const image of images) {
-    addImage(createImage(image));
+  for (const imageSrc of images) {
+    addImage(createImage(imageSrc));
   }
   centerFirstImage();
   selectImage(getImages()[0]);
@@ -57,8 +56,7 @@ function selectImage(image) {
 }
 
 function deselectImages() {
-  const images = getImages();
-  for (const image of images) {
+  for (const image of getImages()) {
     image.classList.remove("selected");
   }
 }
@@ -93,8 +91,7 @@ function moveLeftHalfstep() {
 }
 
 function moveImages() {
-  const images = getImages();
-  for (const image of images) {
+  for (const image of getImages()) {
     image.style.transform = `translateX(${relativeXPosition}px)`;
   }
 }
@@ -113,9 +110,9 @@ function getImages() {
   return document.querySelectorAll(".image");
 }
 
-function createImage(src) {
+function createImage(imageSrc) {
   const newImage = document.createElement("img");
-  newImage.src = src;
+  newImage.src = imageSrc;
   newImage.classList.add("image");
 
   return newImage;
